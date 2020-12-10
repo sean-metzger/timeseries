@@ -7,7 +7,7 @@ from xgboost import plot_importance, plot_tree
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 
-pjme = pd.read_csv('/Users/sean/Downloads/energy_forecast/PJME_hourly.csv',
+pjme = pd.read_csv('gs://seantimeseries/PJME_hourly.csv',
                   index_col=[0], parse_dates=[0])
 
 def extract_window(dataframe): 
