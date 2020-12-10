@@ -37,6 +37,8 @@ def extract_feats(df):
 pjme_x = extract_feats(pjme_x)
 pjme_x.head()
 
+
+# Make the dataset, split it, and then throw away samples that have overlap with training data! 
 split_date = '01-01-2015'
 
 x_tr = pjme_x.loc[pjme_x.index < split_date]
@@ -46,20 +48,16 @@ x_te = pjme_x.loc[pjme_x.index >= split_date]
 y_te = pjme_y.loc[pjme_y.index >= split_date]
 
 
-from xgboost import XGBRegressor
-
-model = XGBRegressor()
-
-# Make the dataset
 x_te = x_te[10:]
 y_te = y_te[10:]
 
-x_te.values.shape
 
 import ray
 from ray import tune
+
+# The commented lines below are for local debug.
 # ray.services.get_node_ip_address = lambda: '127.0.0.1'
-ray.init(local_mode=True,num_cpus=1, num_gpus=0)
+# ray.init(local_mode=True,num_cpus=1, num_gpus=0)
 
 from tensorflow.keras.layers import Dense
 from tensorflow.keras import Model
