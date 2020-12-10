@@ -148,9 +148,6 @@ load_data()
 from ray.tune.schedulers import AsyncHyperBandScheduler
 sched = AsyncHyperBandScheduler(max_t=30, grace_period=20)
 
-
-
-
 analysis = tune.run(
     TSTrainer, 
     metric='test_loss',
